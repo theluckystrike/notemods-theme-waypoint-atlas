@@ -1,0 +1,298 @@
+/* Waypoint Atlas — atlas / spatial-navigation theme for Obsidian
+   slug: waypoint-atlas   family: visual-thinking   modes: light, dark
+   Original CSS, MIT. Installed/system fonts only. No network assets, no @import. */
+
+.theme-light,
+.theme-dark {
+  --font-text-theme: "Optima", "Candara", "Corbel", "Trebuchet MS", sans-serif;
+  --font-interface-theme: "Gill Sans", "Gill Sans MT", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-monospace-theme: "SFMono-Regular", "Menlo", "Consolas", monospace;
+  --atlas-font: var(--font-text-theme);
+
+  --font-weight: 400;
+  --bold-weight: 650;
+  --line-height-normal: 1.58;
+  --line-height-tight: 1.25;
+  --p-spacing: 0.55em;
+  --heading-spacing: 1.1em;
+
+  --h1-size: 1.72em;  --h2-size: 1.32em;  --h3-size: 1.1em;
+  --h4-size: 1em;     --h5-size: 0.93em;  --h6-size: 0.87em;
+  --h1-weight: 700;   --h2-weight: 700;   --h3-weight: 600;
+  --h4-weight: 600;   --h5-weight: 600;   --h6-weight: 600;
+  --h1-font: var(--font-interface-theme);
+  --h2-font: var(--font-interface-theme);
+  --h3-font: var(--font-interface-theme);
+
+  --file-line-width: 45rem;
+  --list-indent: 1.5em;
+  --list-spacing: 0.14em;
+
+  --atlas-radius: 2px;
+  --radius-s: 2px;    --radius-m: 3px;    --radius-l: 4px;
+  --checkbox-size: 16px;
+  --checkbox-radius: 2px;
+  --callout-radius: 2px;
+  --callout-border-width: 1px;
+  --callout-border-opacity: 1;
+  --callout-padding: 0.6em 0.85em;
+  --callout-title-size: 0.95em;
+  --tag-radius: 2px;
+  --tag-size: 0.79em;
+  --table-border-width: 1px;
+  --table-text-size: 0.92em;
+  --table-line-height: 1.4;
+  --code-size: 0.86em;
+  --code-background: var(--background-secondary);
+  --divider-width: 1px;
+  --tab-radius: 0px;
+  --scrollbar-width: 11px;
+
+  --atlas-rail: var(--text-accent);
+  --atlas-marker: var(--text-accent);
+}
+
+.theme-light {
+  --color-base-00: #f4efe3; --color-base-05: #efe9da; --color-base-10: #e8e1cf;
+  --color-base-20: #ddd4bf; --color-base-25: #d3c9b1; --color-base-30: #c6baa0;
+  --color-base-35: #b3a688; --color-base-40: #9c8e70;
+  --color-base-50: #7d7059; --color-base-60: #5f5544; --color-base-70: #45403a;
+  --color-base-100: #1f2a30;
+  --accent-h: 183; --accent-s: 82%; --accent-l: 24%;
+  --atlas-grid: #d8cdb4;
+  --atlas-water: #d9e4e2;
+  --background-primary: #f4efe3;
+  --background-primary-alt: #efe9da;
+  --background-secondary: #ece5d4;
+  --background-secondary-alt: #e3dbc6;
+  --background-modifier-border: #cfc4a8;
+  --background-modifier-border-hover: #b3a688;
+  --background-modifier-border-focus: #0b6b6f;
+  --background-modifier-hover: rgba(11, 107, 111, 0.08);
+  --background-modifier-active-hover: rgba(11, 107, 111, 0.14);
+  --background-modifier-form-field: #f7f3e8;
+  --text-normal: #1f2a30; --text-muted: #4f5a5e; --text-faint: #7d7059;
+  --text-accent: #0b6b6f; --text-accent-hover: #084c4f;
+  --text-on-accent: #f4efe3;
+  --text-selection: rgba(11, 107, 111, 0.18);
+  --text-highlight-bg: rgba(224, 168, 60, 0.42);
+  --interactive-normal: #e8e1cf; --interactive-hover: #ddd4bf;
+  --interactive-accent: #0b6b6f; --interactive-accent-hover: #084c4f;
+  --link-color: #0b6b6f; --link-color-hover: #084c4f;
+  --link-external-color: #8a4a12; --link-external-color-hover: #6b3810;
+  --link-unresolved-color: #7d7059;
+  --tag-background: #e0d8c4; --tag-color: #45403a;
+  --tag-background-hover: #d5ccb4;
+  --code-normal: #223038;
+  --code-comment: #7d7059; --code-keyword: #0b6b6f; --code-string: #3f6b2a;
+  --code-function: #6b3a7a; --code-value: #8a5a1e; --code-tag: #a03418;
+  --tab-text-color: #5f5544; --tab-text-color-active: #1f2a30;
+  --tab-text-color-focused: #1f2a30; --tab-text-color-focused-active: #1f2a30;
+  --tab-background-active: #f4efe3;
+  --tab-outline-color: #cfc4a8;
+  --nav-item-color: #45403a; --nav-item-color-hover: #1f2a30;
+  --nav-item-color-active: #0b6b6f; --nav-item-background-hover: rgba(11, 107, 111, 0.08);
+  --nav-item-background-active: rgba(11, 107, 111, 0.14);
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgba(31, 42, 48, 0.2);
+  --scrollbar-active-thumb-bg: rgba(31, 42, 48, 0.36);
+}
+
+.theme-dark {
+  --color-base-00: #101a1f; --color-base-05: #132127; --color-base-10: #16242a;
+  --color-base-20: #1c2c33; --color-base-25: #22343c; --color-base-30: #2a4048;
+  --color-base-35: #38505a; --color-base-40: #4c6570;
+  --color-base-50: #6b8390; --color-base-60: #90a5b0; --color-base-70: #b6c6cd;
+  --color-base-100: #e8eef0;
+  --accent-h: 174; --accent-s: 62%; --accent-l: 60%;
+  --atlas-grid: #23373f;
+  --atlas-water: #16333a;
+  --background-primary: #101a1f;
+  --background-primary-alt: #132127;
+  --background-secondary: #16242a;
+  --background-secondary-alt: #1c2c33;
+  --background-modifier-border: #2c3d44;
+  --background-modifier-border-hover: #405661;
+  --background-modifier-border-focus: #5fd0c8;
+  --background-modifier-hover: rgba(95, 208, 200, 0.1);
+  --background-modifier-active-hover: rgba(95, 208, 200, 0.16);
+  --background-modifier-form-field: #16242a;
+  --text-normal: #e8eef0; --text-muted: #9fb0b5; --text-faint: #6b8390;
+  --text-accent: #5fd0c8; --text-accent-hover: #8fe2dc;
+  --text-on-accent: #08201f;
+  --text-selection: rgba(95, 208, 200, 0.2);
+  --text-highlight-bg: rgba(224, 168, 60, 0.3);
+  --interactive-normal: #1c2c33; --interactive-hover: #22343c;
+  --interactive-accent: #5fd0c8; --interactive-accent-hover: #8fe2dc;
+  --link-color: #5fd0c8; --link-color-hover: #8fe2dc;
+  --link-external-color: #e0a850; --link-external-color-hover: #efc079;
+  --link-unresolved-color: #6b8390;
+  --tag-background: #22343c; --tag-color: #c4d2d7;
+  --tag-background-hover: #2a4048;
+  --code-normal: #dbe5e8;
+  --code-comment: #6b8390; --code-keyword: #5fd0c8; --code-string: #a7d08a;
+  --code-function: #d3a7e0; --code-value: #e8c48a; --code-tag: #f0a08a;
+  --tab-text-color: #9fb0b5; --tab-text-color-active: #e8eef0;
+  --tab-text-color-focused: #e8eef0; --tab-text-color-focused-active: #f4f7f8;
+  --tab-background-active: #132127;
+  --tab-outline-color: #2c3d44;
+  --nav-item-color: #b6c6cd; --nav-item-color-hover: #e8eef0;
+  --nav-item-color-active: #8fe2dc; --nav-item-background-hover: rgba(95, 208, 200, 0.1);
+  --nav-item-background-active: rgba(95, 208, 200, 0.16);
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgba(232, 238, 240, 0.2);
+  --scrollbar-active-thumb-bg: rgba(232, 238, 240, 0.36);
+}
+
+/* ---------- map canvas: dotted graticule behind Reading view ---------- */
+.markdown-preview-view .markdown-preview-sizer {
+  background-image: radial-gradient(var(--atlas-grid) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  background-position: 0 0;
+  padding-block: 1.6rem;
+}
+.markdown-source-view.mod-cm6 .cm-scroller {
+  background-image: linear-gradient(to right, var(--atlas-grid) 1px, transparent 1px);
+  background-size: 44px 100%;
+}
+
+/* ---------- typographic base ---------- */
+.markdown-preview-view .markdown-rendered { font-family: var(--atlas-font); }
+.markdown-preview-view .markdown-preview-sizer,
+.markdown-source-view.mod-cm6 .cm-sizer { max-width: var(--file-line-width); margin-inline: auto; }
+.markdown-rendered p { margin-block: 0 0.55em; }
+
+/* ---------- headings carry waypoint markers ---------- */
+.markdown-rendered h1, .markdown-rendered h2, .markdown-rendered h3,
+.markdown-rendered h4, .markdown-rendered h5, .markdown-rendered h6 {
+  font-family: var(--font-interface-theme);
+  letter-spacing: 0.015em;
+  margin-block: 1.1em 0.4em;
+}
+.markdown-rendered h2 { border-bottom: 1px solid var(--background-modifier-border); padding-bottom: 0.18em; }
+.markdown-rendered h1::before { content: "◈ "; color: var(--atlas-marker); }
+.markdown-rendered h2::before { content: "◇ "; color: var(--atlas-marker); }
+.markdown-rendered h3::before { content: "· "; color: var(--atlas-marker); }
+
+/* ---------- links: compass-marked, route-underlined ---------- */
+a.internal-link { color: var(--link-color); text-decoration: underline dotted; text-underline-offset: 0.16em; }
+a.internal-link:hover { color: var(--link-color-hover); text-decoration-style: solid; }
+a.external-link { color: var(--link-external-color); }
+a.external-link:hover { color: var(--link-external-color-hover); }
+.is-unresolved, a.is-unresolved { color: var(--link-unresolved-color); text-decoration-style: dashed; }
+
+/* ---------- lists and itinerary markers ---------- */
+.markdown-rendered ul, .markdown-rendered ol { padding-inline-start: 1.5em; }
+.markdown-rendered ul > li::marker { content: "▸  "; color: var(--atlas-marker); }
+.markdown-rendered ol > li::marker { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.markdown-rendered li { margin-block: 0.12em; }
+
+/* ---------- tasks as checked waypoints ---------- */
+.markdown-rendered input[type="checkbox"], .task-list-item input[type="checkbox"] {
+  width: var(--checkbox-size); height: var(--checkbox-size);
+  border: 1px solid var(--background-modifier-border-hover);
+  border-radius: var(--checkbox-radius);
+}
+.markdown-rendered input[type="checkbox"]:checked { background: var(--interactive-accent); }
+.markdown-rendered .task-list-item { list-style: none; }
+.markdown-rendered .task-list-item.is-checked { color: var(--text-faint); text-decoration: line-through; }
+
+/* ---------- blockquote: a charted margin note ---------- */
+.markdown-rendered blockquote {
+  border-inline-start: 2px dashed var(--background-modifier-border);
+  background: var(--background-secondary);
+  margin-inline: 0; padding: 0.5em 0.9em; color: var(--text-muted); font-style: italic;
+}
+
+/* ---------- callouts: route rail ---------- */
+.callout {
+  border-radius: var(--callout-radius);
+  border: 1px solid var(--background-modifier-border);
+  border-inline-start: 3px solid var(--atlas-rail);
+  background: var(--background-secondary);
+}
+.callout-title { font-family: var(--font-interface-theme); letter-spacing: 0.03em; }
+.callout-content { font-size: 0.96em; }
+
+/* ---------- tables: chart legend ---------- */
+.markdown-rendered table { border-collapse: collapse; width: 100%; font-size: var(--table-text-size); line-height: var(--table-line-height); }
+.markdown-rendered th, .markdown-rendered td { border: 1px solid var(--background-modifier-border); padding: 0.3em 0.6em; text-align: start; }
+.markdown-rendered thead th { background: var(--background-secondary); font-family: var(--font-interface-theme); letter-spacing: 0.03em; }
+.markdown-rendered tbody tr:nth-child(even) { background: var(--background-primary-alt); }
+
+/* ---------- code ---------- */
+.markdown-rendered code { font-size: var(--code-size); }
+.markdown-rendered :not(pre) > code, .cm-inline-code {
+  background: var(--code-background); border-radius: var(--radius-s);
+  padding: 0.05em 0.3em; color: var(--code-normal);
+  border: 1px solid var(--background-modifier-border);
+}
+.markdown-rendered pre, .HyperMD-codeblock {
+  background: var(--code-background); border-radius: var(--radius-s);
+  border: 1px solid var(--background-modifier-border); line-height: 1.4;
+}
+.markdown-rendered pre { border-inline-start: 3px solid var(--atlas-rail); }
+.markdown-rendered pre code { background: transparent; border: none; }
+
+/* ---------- tags, rules ---------- */
+.tag, a.tag {
+  background: var(--tag-background); color: var(--tag-color);
+  border-radius: var(--tag-radius); padding: 0.03em 0.42em;
+  font-size: var(--tag-size); font-family: var(--font-interface-theme);
+}
+a.tag:hover { background: var(--tag-background-hover); }
+.markdown-rendered hr { border: none; border-top: 1px solid var(--divider-color); }
+.markdown-rendered hr::after { content: "◇"; display: block; color: var(--atlas-marker); text-align: center; margin-top: -0.7em; background: var(--background-primary); width: 1.4em; margin-inline: auto; }
+
+/* ---------- search ---------- */
+.search-result { border-bottom: 1px solid var(--divider-color); }
+.search-result-file-title { font-weight: 700; color: var(--text-normal); }
+.search-result-file-matched-text { background: var(--text-highlight-bg); }
+.search-input-container input[type="search"] { border: 1px solid var(--background-modifier-border); }
+
+/* ---------- settings and modals ---------- */
+.modal, .prompt { border-radius: var(--radius-m); border: 1px solid var(--background-modifier-border); }
+.setting-item { border-top: 1px solid var(--divider-color); padding-block: 0.65em; }
+.setting-item-name { font-weight: 650; }
+.setting-item-description { color: var(--text-muted); font-size: 0.93em; }
+.vertical-tab-nav-item.is-active { color: var(--text-accent); font-weight: 650; border-inline-start: 2px solid var(--atlas-rail); }
+input[type="text"], input[type="search"], textarea, select {
+  border-radius: var(--radius-s); border: 1px solid var(--background-modifier-border);
+  background: var(--background-modifier-form-field);
+}
+
+/* ---------- tabs ---------- */
+.workspace-tab-header { border-radius: var(--tab-radius); font-size: 0.93em; }
+.workspace-tab-header.is-active { border-bottom: 2px solid var(--atlas-rail); }
+.workspace-tab-header.is-active .workspace-tab-header-inner-title { color: var(--tab-text-color-active); font-weight: 650; }
+
+/* ---------- navigation as map layers ---------- */
+.nav-file-title, .nav-folder-title { border-radius: var(--radius-s); color: var(--nav-item-color); min-height: 1.5em; font-size: 0.93em; }
+.nav-folder-title { text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.82em; }
+.nav-file-title:hover, .nav-folder-title:hover { background: var(--nav-item-background-hover); }
+.nav-file-title.is-active { background: var(--nav-item-background-active); color: var(--nav-item-color-active); }
+
+/* ---------- status bar, scrollbars, selection, focus ---------- */
+.status-bar { background: var(--background-secondary); color: var(--text-muted); font-size: 0.8em; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb-bg); border-radius: 5px; }
+::selection { background: var(--text-selection); }
+:focus-visible {
+  outline: 2px solid var(--background-modifier-border-focus);
+  outline-offset: 1px;
+  border-radius: var(--radius-s);
+}
+
+@media (max-width: 640px) {
+  .markdown-preview-view .markdown-preview-sizer,
+  .markdown-source-view.mod-cm6 .cm-sizer { padding-inline: 0.85rem; }
+  :root { --file-line-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

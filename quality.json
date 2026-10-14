@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "theme": "Waypoint Atlas",
+  "version": "1.0.0",
+  "status": "HOLD",
+  "score": 75,
+  "requiredScore": 95,
+  "reviewedAt": "2026-10-14T15:05:15",
+  "reviewer": "claude-orchestrator",
+  "accepted": false,
+  "directoryApprovalClaimed": false,
+  "majorDefects": [],
+  "note": "This records the source review. New repository documentation has not been rescored."
+}
