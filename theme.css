@@ -202,7 +202,6 @@ a.external-link:hover { color: var(--link-external-color-hover); }
 .is-unresolved, a.is-unresolved { color: var(--link-unresolved-color); border-bottom: 1px dashed currentColor; }
 
 /* ---------- lists and itinerary markers ---------- */
-.markdown-rendered ul, .markdown-rendered ol { padding-inline-start: 1.5em; }
 .markdown-rendered ul > li::marker { content: "▸  "; color: var(--atlas-marker); }
 .markdown-rendered ol > li::marker { color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .markdown-rendered li { margin-block: 0.12em; }
@@ -363,8 +362,15 @@ body.theme-dark :focus-visible {
 }
 .markdown-source-view.mod-cm6 .HyperMD-codeblock-bg {
   background: var(--code-background);
-  border-inline-start: 3px solid var(--atlas-rail);
+  border-inline-start: none;
   border-inline-end: 1px solid var(--background-modifier-border);
+  border-radius: 0;
+  inset-inline-end: 0;
+}
+.markdown-source-view.mod-cm6 .HyperMD-codeblock-bg::before {
+  content: ""; position: absolute;
+  inset-inline-start: 0; top: -1px; bottom: -1px; width: 3px;
+  background: var(--atlas-rail); pointer-events: none;
 }
 .markdown-source-view.mod-cm6 .HyperMD-codeblock-begin-bg {
   border-top: 1px solid var(--background-modifier-border);
@@ -375,7 +381,8 @@ body.theme-dark :focus-visible {
   border-radius: 0 0 var(--radius-s) var(--radius-s);
 }
 .markdown-preview-view pre, .markdown-preview-view .table-wrapper { overflow-x: auto; overflow-y: hidden; }
-.markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper { overflow: visible; }
+.markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper { overflow: visible; width: 100%; }
+.markdown-source-view.mod-cm6 .cm-table-widget table { width: 100%; }
 
 /* Keep a solid sheet behind the editor text. */
 .markdown-source-view.mod-cm6 .cm-content {
@@ -403,10 +410,11 @@ body.theme-dark :focus-visible {
 }
 .markdown-source-view.mod-cm6 .HyperMD-quote { font-style: italic; }
 .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-indent::before { display: none; }
-body:is(.theme-light, .theme-dark) .markdown-source-view .cm-content:focus-visible,
-body:is(.theme-light, .theme-dark) .markdown-source-view .cm-editor.cm-focused {
-  outline: none;
-  box-shadow: none;
+body:is(.theme-light, .theme-dark) .markdown-source-view .cm-content:focus-visible {
+  outline: none; box-shadow: none; caret-color: var(--text-accent);
+}
+body:is(.theme-light, .theme-dark) .markdown-source-view .cm-editor.cm-focused .cm-scroller {
+  box-shadow: inset 3px 0 0 var(--background-modifier-border-focus);
 }
 body .cm-s-obsidian span.cm-hashtag {
   background: var(--tag-background); color: var(--tag-color);
@@ -424,7 +432,7 @@ body .cm-s-obsidian span.cm-hashtag-end {
 
 /* Chart-index chrome repeats the route rail without adding note decoration. */
 .prompt { border-top: 3px solid var(--atlas-rail); }
-.prompt-input-container { border-bottom: 1px solid var(--divider-color); }
+.prompt-input-container { border-bottom: none; }
 .prompt-results { padding: 0.4rem; }
 body .suggestion-item.is-selected, body .prompt .suggestion-item.is-selected {
   background: var(--interactive-accent);
@@ -438,14 +446,14 @@ body .suggestion-item.is-selected, body .prompt .suggestion-item.is-selected {
 .nav-file-title.is-active { box-shadow: inset 3px 0 0 var(--atlas-rail); }
 .vertical-tab-nav-item.is-active { background: var(--background-primary); }
 .vertical-tab-header-group-title { font-family: var(--font-interface-theme); letter-spacing: 0.09em; text-transform: uppercase; }
-.setting-item-heading { border-top: 2px solid var(--atlas-rail); }
+body .setting-item.setting-item-heading { border-top: 2px solid var(--atlas-rail); border-radius: 0; padding-inline-start: var(--size-4-2); }
 body .setting-item-control :is(button:not(.mod-cta):not(.clickable-icon), select.dropdown) {
   background-color: var(--interactive-normal);
   border: 1px solid var(--background-modifier-border);
 }
 
 /* Keep code labels and control focus above the app's specific defaults. */
-body .markdown-source-view.mod-cm6 .cm-content span.cm-inline-code:not(.cm-formatting) {
+body .markdown-source-view.mod-cm6 .cm-content span.cm-inline-code:not(.cm-formatting):not(.cm-hmd-indented-code) {
   background: var(--code-background); color: var(--code-normal);
   border: 1px solid var(--background-modifier-border);
   border-radius: var(--radius-s); padding: 0.05em 0.25em;
@@ -534,4 +542,96 @@ body .markdown-embed .markdown-preview-view,
 body .markdown-embed-content.markdown-preview-view {
   background-image: none;
   background-color: transparent;
+}
+
+/* The horizon carries the same waypoint in Live Preview and Reading. */
+.markdown-source-view.mod-cm6 .hr { position: relative; }
+.markdown-source-view.mod-cm6 .hr::after {
+  content: "◇"; position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%); color: var(--atlas-marker);
+  background: var(--background-primary); width: 1.4em;
+  text-align: center; line-height: 1;
+}
+.markdown-source-view.mod-cm6 .hr hr {
+  border: none; border-top: 1px solid var(--divider-color);
+}
+/* Keep one block frame. Do not frame indented-code text spans. */
+body .markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-inline-code,
+body .markdown-source-view.mod-cm6 .cm-hmd-indented-code {
+  background: transparent; border: none; border-radius: 0; padding: 0;
+}
+.callout[data-callout="warning"], .callout[data-callout="caution"] {
+  padding-inline-start: calc(0.85em - 3px);
+}
+.callout[data-callout="danger"], .callout[data-callout="failure"] {
+  padding-inline-start: calc(0.85em - 1px);
+}
+/* An open search index keeps matching text easy to scan. */
+body .search-result-file-matches { border: none; box-shadow: none; border-radius: 0; }
+body .search-result-file-match { border: none; border-bottom: 1px solid var(--divider-color); border-radius: 0; }
+body .search-result-file-matched-text { font-weight: 750; }
+
+/* Route marks identify the current file and command without shifting labels. */
+.nav-file-title.is-active { position: relative; }
+.nav-file-title.is-active::after {
+  content: "◆"; position: absolute; inset-inline-start: 7px;
+  top: 50%; transform: translateY(-50%); font-size: 8px;
+  color: var(--atlas-marker); pointer-events: none;
+}
+.prompt-input-container { position: relative; }
+.prompt-input-container::before {
+  content: "◇"; position: absolute; inset-inline-start: 15px;
+  top: 50%; transform: translateY(-50%);
+  color: var(--atlas-marker); pointer-events: none;
+}
+.prompt .prompt-input { padding-inline-start: 2.5rem; }
+.prompt .suggestion-title { position: relative; padding-inline-start: 1.1em; }
+.prompt .suggestion-item.is-selected .suggestion-title::before {
+  content: "◇"; position: absolute; inset-inline-start: 0; color: currentColor;
+}
+
+/* Reading and Live Preview use one indent per list level. */
+body { --list-marker-color: var(--atlas-marker); }
+body .markdown-rendered :is(ul, ol) { padding-inline-start: 0; }
+body .markdown-rendered li > :is(ul, ol) { margin-inline-start: 0; }
+body .markdown-source-view.mod-cm6 .cm-formatting-list-ol {
+  color: var(--atlas-marker); font-family: var(--font-monospace-theme); font-weight: 700;
+}
+body .markdown-source-view.mod-cm6 .list-bullet::after { background-color: var(--atlas-marker); }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line { --atlas-list-level: 0; }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line-2 { --atlas-list-level: 1; }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line-3 { --atlas-list-level: 2; }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line-4 { --atlas-list-level: 3; }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line-5 { --atlas-list-level: 4; }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line-6 { --atlas-list-level: 5; }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line-7 { --atlas-list-level: 6; }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line-8 { --atlas-list-level: 7; }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line > .cm-hmd-list-indent {
+  min-width: calc(var(--list-indent) * var(--atlas-list-level));
+}
+
+/* CodeMirror uses the same complete token palette as Reading. */
+body.theme-light, body.theme-dark {
+  --code-property: var(--code-normal); --code-important: var(--code-keyword);
+  --code-operator: var(--code-keyword); --code-punctuation: var(--code-comment);
+  --checklist-done-color: var(--text-muted); --checklist-done-decoration: none;
+}
+body .markdown-source-view.mod-cm6.is-readable-line-width .cm-line.HyperMD-codeblock { max-width: 100%; }
+.markdown-rendered li.task-list-item.is-checked { color: var(--checklist-done-color); text-decoration: none; }
+.markdown-rendered li.task-list-item:not(.is-checked) { color: var(--text-normal); text-decoration: none; }
+body .setting-item-control :is(button:not(.mod-cta):not(.clickable-icon), select.dropdown) { color: var(--text-normal); }
+
+/* Numbered waypoints match the editor marker color and typography. */
+body .markdown-rendered ol > li::marker {
+  color: var(--atlas-marker); font-family: var(--font-monospace-theme); font-weight: 700;
+}
+
+/* Ordered markers reserve the same leading space as Live Preview. */
+body .markdown-rendered ol { padding-inline-start: calc(var(--list-indent) * 0.5); }
+body .markdown-rendered li > ol { padding-inline-start: 0; }
+/* Plain indented code stays unframed in both views. Fences retain the route frame. */
+body .markdown-preview-view pre:not([class]),
+body .markdown-preview-view pre[class=""] {
+  background: transparent; border: none; border-radius: 0; box-shadow: none;
+  padding: 0; padding-inline-start: var(--list-indent);
 }

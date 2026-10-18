@@ -61,7 +61,9 @@ It does not mark a control, table cell or content boundary.
 It is intentionally faint. Structural borders use a separate contrast-tested token.
 `--atlas-rail` controls the code, embed and navigation rails.
 Callout rails retain the color for their type.
+`--atlas-marker` controls waypoint glyphs.
 `--atlas-water` controls the embed background.
+Primary controls and route marks use fixed teal colors. Use theme variables in a CSS snippet to change them.
 Check text and border contrast after you change colors.
 
 ## Known limits
@@ -70,12 +72,15 @@ Check text and border contrast after you change colors.
 - Diamond heading marks are CSS decoration. They are not note text or navigation controls.
 - Optima and Gill Sans depend on installed fonts. Fallback fonts can change line breaks.
 - Wide tables and code blocks can need horizontal scrolling.
-- Callout types use distinct colored rails and icons. Warning and danger callouts also have distinct borders.
+- Callout families use distinct rail colors and icons. Related types share a color. Warning and danger callouts also have distinct borders.
 - The theme styles notes. It does not create maps or change graph positions.
 - Plugin views can use their own styles. They were not part of the fixture test.
+- The native ribbon, tab headers, status bar, and file list were not reached by the Tab trace in Obsidian 1.14.4.
+- The editor shows focus with a teal viewport rail and a clear caret.
+- The oldest declared app version was not tested.
 - Automated contrast checks do not certify WCAG conformance. Screen reader use has not been tested.
 
 ## License
 
-[MIT License](LICENSE). The original copyright notice is retained.
+[MIT License](LICENSE). Copyright 2026 NoteMods.
 NoteMods maintains this theme.
