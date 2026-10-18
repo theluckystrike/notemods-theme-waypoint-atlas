@@ -585,9 +585,9 @@ body .search-result-file-matched-text { font-weight: 750; }
   color: var(--atlas-marker); pointer-events: none;
 }
 .prompt .prompt-input { padding-inline-start: 2.5rem; }
-.prompt .suggestion-title { position: relative; padding-inline-start: 1.1em; }
+.prompt .suggestion-title { position: relative; padding-inline-start: 1.35em; }
 .prompt .suggestion-item.is-selected .suggestion-title::before {
-  content: "◇"; position: absolute; inset-inline-start: 0; color: currentColor;
+  content: "◇"; position: absolute; inset-inline-start: -0.1em; color: currentColor;
 }
 
 /* Reading and Live Preview use one indent per list level. */
@@ -629,9 +629,46 @@ body .markdown-rendered ol > li::marker {
 /* Ordered markers reserve the same leading space as Live Preview. */
 body .markdown-rendered ol { padding-inline-start: calc(var(--list-indent) * 0.5); }
 body .markdown-rendered li > ol { padding-inline-start: 0; }
-/* Plain indented code stays unframed in both views. Fences retain the route frame. */
-body .markdown-preview-view pre:not([class]),
-body .markdown-preview-view pre[class=""] {
-  background: transparent; border: none; border-radius: 0; box-shadow: none;
-  padding: 0; padding-inline-start: var(--list-indent);
+
+
+/* Reading keeps its focus cue inside the viewport, clear of note text. */
+html body:is(.theme-light, .theme-dark) .workspace-leaf-content .markdown-preview-view:focus-visible {
+  outline: none; box-shadow: inset 3px 0 0 var(--background-modifier-border-focus);
+}
+/* Property labels belong to the record. Reserve their field edge for interaction. */
+body .metadata-property-key-input { border-color: transparent; background: transparent; }
+body .metadata-property-key-input:is(:hover, :focus) { border-color: var(--background-modifier-border); }
+/* Route guides follow each reserved nesting level without changing line metrics. */
+body .markdown-source-view.mod-cm6 .HyperMD-list-line > .cm-hmd-list-indent { position: relative; }
+body .markdown-source-view.mod-cm6 .HyperMD-list-line > .cm-hmd-list-indent::before {
+  content: ""; position: absolute; inset: -4px 0;
+  background-image: repeating-linear-gradient(to right,
+    transparent 0, transparent calc(var(--list-indent) - 1px),
+    var(--indentation-guide-color) calc(var(--list-indent) - 1px),
+    var(--indentation-guide-color) var(--list-indent));
+  pointer-events: none;
+}
+body .markdown-source-view.mod-cm6 .cm-hmd-list-indent .cm-indent::before { display: none; }
+body .markdown-source-view.mod-cm6 .list-bullet { margin-inline-end: 0.35em; }
+/* Indented code has a single panel. Only its first and last lines paint an end edge.
+   A parent selector is needed because native indented lines have no block class. */
+body .markdown-source-view.mod-cm6 .cm-line:has(> .cm-hmd-indented-code) {
+  position: relative;
+  background: linear-gradient(var(--atlas-rail), var(--atlas-rail)) left / 3px 100% no-repeat,
+    linear-gradient(var(--background-modifier-border), var(--background-modifier-border)) right / 1px 100% no-repeat,
+    var(--code-background);
+}
+body .markdown-source-view.mod-cm6 .cm-line:has(> .cm-hmd-indented-code) .cm-indent::before { display: none; }
+body .markdown-source-view.mod-cm6 .cm-line:has(> .cm-hmd-indented-code):first-child::before,
+body .markdown-source-view.mod-cm6 .cm-line:not(:has(> .cm-hmd-indented-code)) + .cm-line:has(> .cm-hmd-indented-code)::before {
+  content: ""; position: absolute; inset: 0 0 auto 3px; border-top: 1px solid var(--background-modifier-border); pointer-events: none;
+}
+body .markdown-source-view.mod-cm6 .cm-line:has(> .cm-hmd-indented-code):not(:has(+ .cm-line > .cm-hmd-indented-code))::after {
+  content: ""; position: absolute; inset: auto 0 0 3px; border-bottom: 1px solid var(--background-modifier-border); pointer-events: none;
+}
+
+/* Settings keeps a focus fallback when its native window changes focus modality. */
+html body:is(.theme-light, .theme-dark) .vertical-tab-content .setting-item:focus,
+html body:is(.theme-light, .theme-dark) .vertical-tab-content .setting-item-control :is(button, input, select, textarea, .checkbox-container, .clickable-icon):focus {
+  outline: 2px solid var(--text-normal); outline-offset: 2px; box-shadow: none;
 }

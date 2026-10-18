@@ -76,7 +76,7 @@ Check text and border contrast after you change colors.
 - The theme styles notes. It does not create maps or change graph positions.
 - Plugin views can use their own styles. They were not part of the fixture test.
 - The native ribbon, tab headers, status bar, and file list were not reached by the Tab trace in Obsidian 1.14.4.
-- The editor shows focus with a teal viewport rail and a clear caret.
+- Reading uses a teal viewport focus rail. The editor also has a clear caret.
 - The oldest declared app version was not tested.
 - Automated contrast checks do not certify WCAG conformance. Screen reader use has not been tested.
 
