@@ -528,3 +528,10 @@ body .markdown-source-view.mod-cm6 .cm-quote { color: var(--text-muted); }
 /* Preserve the disabled glyph cue without fading its keyboard focus ring. */
 body .clickable-icon[aria-disabled="true"]:focus-visible { opacity: 1; }
 body .clickable-icon[aria-disabled="true"]:focus-visible svg { opacity: 0.4; }
+
+/* Embedded notes keep one water panel, without a second survey texture. */
+body .markdown-embed .markdown-preview-view,
+body .markdown-embed-content.markdown-preview-view {
+  background-image: none;
+  background-color: transparent;
+}
