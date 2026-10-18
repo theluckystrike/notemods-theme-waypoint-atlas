@@ -44,12 +44,29 @@
   --table-line-height: 1.4;
   --code-size: 0.86em;
   --code-background: var(--background-secondary);
+  --code-property: var(--text-normal);
+  --code-operator: var(--text-accent);
+  --code-punctuation: var(--text-muted);
+  --code-important: var(--text-accent);
+  --code-builtin: var(--code-function);
   --divider-width: 1px;
   --tab-radius: 0px;
   --scrollbar-width: 11px;
 
   --atlas-rail: var(--text-accent);
   --atlas-marker: var(--text-accent);
+  --divider-color: var(--background-modifier-border);
+  --table-border-color: var(--background-modifier-border);
+  --hr-color: var(--background-modifier-border);
+  --indentation-guide-color: var(--background-modifier-border);
+  --checkbox-border-color: var(--background-modifier-border);
+  --checklist-done-decoration: none;
+  --link-decoration: underline;
+  --link-external-decoration: underline;
+  --link-unresolved-opacity: 1;
+  --h4-font: var(--font-interface-theme);
+  --h5-font: var(--font-interface-theme);
+  --h6-font: var(--font-interface-theme);
 }
 
 .theme-light {
@@ -59,19 +76,19 @@
   --color-base-50: #7d7059; --color-base-60: #5f5544; --color-base-70: #45403a;
   --color-base-100: #1f2a30;
   --accent-h: 183; --accent-s: 82%; --accent-l: 24%;
-  --atlas-grid: #d8cdb4;
+  --atlas-grid: #e4dcc8;
   --atlas-water: #d9e4e2;
   --background-primary: #f4efe3;
   --background-primary-alt: #efe9da;
   --background-secondary: #ece5d4;
   --background-secondary-alt: #e3dbc6;
-  --background-modifier-border: #cfc4a8;
-  --background-modifier-border-hover: #b3a688;
+  --background-modifier-border: #80745d;
+  --background-modifier-border-hover: #645a47;
   --background-modifier-border-focus: #0b6b6f;
   --background-modifier-hover: rgba(11, 107, 111, 0.08);
   --background-modifier-active-hover: rgba(11, 107, 111, 0.14);
   --background-modifier-form-field: #f7f3e8;
-  --text-normal: #1f2a30; --text-muted: #4f5a5e; --text-faint: #7d7059;
+  --text-normal: #1f2a30; --text-muted: #4f5a5e; --text-faint: #645a47;
   --text-accent: #0b6b6f; --text-accent-hover: #084c4f;
   --text-on-accent: #f4efe3;
   --text-selection: rgba(11, 107, 111, 0.18);
@@ -80,11 +97,11 @@
   --interactive-accent: #0b6b6f; --interactive-accent-hover: #084c4f;
   --link-color: #0b6b6f; --link-color-hover: #084c4f;
   --link-external-color: #8a4a12; --link-external-color-hover: #6b3810;
-  --link-unresolved-color: #7d7059;
+  --link-unresolved-color: #645a47;
   --tag-background: #e0d8c4; --tag-color: #45403a;
   --tag-background-hover: #d5ccb4;
   --code-normal: #223038;
-  --code-comment: #7d7059; --code-keyword: #0b6b6f; --code-string: #3f6b2a;
+  --code-comment: #645a47; --code-keyword: #0b6b6f; --code-string: #3f6b2a;
   --code-function: #6b3a7a; --code-value: #8a5a1e; --code-tag: #a03418;
   --tab-text-color: #5f5544; --tab-text-color-active: #1f2a30;
   --tab-text-color-focused: #1f2a30; --tab-text-color-focused-active: #1f2a30;
@@ -111,13 +128,13 @@
   --background-primary-alt: #132127;
   --background-secondary: #16242a;
   --background-secondary-alt: #1c2c33;
-  --background-modifier-border: #2c3d44;
-  --background-modifier-border-hover: #405661;
+  --background-modifier-border: #728994;
+  --background-modifier-border-hover: #a2b5bd;
   --background-modifier-border-focus: #5fd0c8;
   --background-modifier-hover: rgba(95, 208, 200, 0.1);
   --background-modifier-active-hover: rgba(95, 208, 200, 0.16);
   --background-modifier-form-field: #16242a;
-  --text-normal: #e8eef0; --text-muted: #9fb0b5; --text-faint: #6b8390;
+  --text-normal: #e8eef0; --text-muted: #9fb0b5; --text-faint: #a2b5bd;
   --text-accent: #5fd0c8; --text-accent-hover: #8fe2dc;
   --text-on-accent: #08201f;
   --text-selection: rgba(95, 208, 200, 0.2);
@@ -126,11 +143,11 @@
   --interactive-accent: #5fd0c8; --interactive-accent-hover: #8fe2dc;
   --link-color: #5fd0c8; --link-color-hover: #8fe2dc;
   --link-external-color: #e0a850; --link-external-color-hover: #efc079;
-  --link-unresolved-color: #6b8390;
+  --link-unresolved-color: #a2b5bd;
   --tag-background: #22343c; --tag-color: #c4d2d7;
   --tag-background-hover: #2a4048;
   --code-normal: #dbe5e8;
-  --code-comment: #6b8390; --code-keyword: #5fd0c8; --code-string: #a7d08a;
+  --code-comment: #a2b5bd; --code-keyword: #5fd0c8; --code-string: #a7d08a;
   --code-function: #d3a7e0; --code-value: #e8c48a; --code-tag: #f0a08a;
   --tab-text-color: #9fb0b5; --tab-text-color-active: #e8eef0;
   --tab-text-color-focused: #e8eef0; --tab-text-color-focused-active: #f4f7f8;
@@ -175,11 +192,11 @@
 .markdown-rendered h3::before { content: "· "; color: var(--atlas-marker); }
 
 /* ---------- links: compass-marked, route-underlined ---------- */
-a.internal-link { color: var(--link-color); text-decoration: underline dotted; text-underline-offset: 0.16em; }
-a.internal-link:hover { color: var(--link-color-hover); text-decoration-style: solid; }
-a.external-link { color: var(--link-external-color); }
+a.internal-link { color: var(--link-color); text-decoration: none; border-bottom: 1px dotted currentColor; }
+a.internal-link:hover { color: var(--link-color-hover); border-bottom-style: solid; }
+a.external-link { color: var(--link-external-color); text-decoration: underline; }
 a.external-link:hover { color: var(--link-external-color-hover); }
-.is-unresolved, a.is-unresolved { color: var(--link-unresolved-color); text-decoration-style: dashed; }
+.is-unresolved, a.is-unresolved { color: var(--link-unresolved-color); border-bottom: 1px dashed currentColor; }
 
 /* ---------- lists and itinerary markers ---------- */
 .markdown-rendered ul, .markdown-rendered ol { padding-inline-start: 1.5em; }
@@ -195,7 +212,7 @@ a.external-link:hover { color: var(--link-external-color-hover); }
 }
 .markdown-rendered input[type="checkbox"]:checked { background: var(--interactive-accent); }
 .markdown-rendered .task-list-item { list-style: none; }
-.markdown-rendered .task-list-item.is-checked { color: var(--text-faint); text-decoration: line-through; }
+.markdown-rendered .task-list-item.is-checked { color: var(--text-faint); text-decoration: none; }
 
 /* ---------- blockquote: a charted margin note ---------- */
 .markdown-rendered blockquote {
@@ -227,7 +244,7 @@ a.external-link:hover { color: var(--link-external-color-hover); }
   padding: 0.05em 0.3em; color: var(--code-normal);
   border: 1px solid var(--background-modifier-border);
 }
-.markdown-rendered pre, .HyperMD-codeblock {
+.markdown-rendered pre {
   background: var(--code-background); border-radius: var(--radius-s);
   border: 1px solid var(--background-modifier-border); line-height: 1.4;
 }
@@ -241,8 +258,8 @@ a.external-link:hover { color: var(--link-external-color-hover); }
   font-size: var(--tag-size); font-family: var(--font-interface-theme);
 }
 a.tag:hover { background: var(--tag-background-hover); }
-.markdown-rendered hr { border: none; border-top: 1px solid var(--divider-color); }
-.markdown-rendered hr::after { content: "◇"; display: block; color: var(--atlas-marker); text-align: center; margin-top: -0.7em; background: var(--background-primary); width: 1.4em; margin-inline: auto; }
+.markdown-rendered hr { border: none; border-top: 1px solid var(--divider-color); position: relative; overflow: visible; }
+.markdown-rendered hr::after { content: "◇"; display: block; position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); color: var(--atlas-marker); text-align: center; line-height: 1; background: var(--background-primary); width: 1.4em; }
 
 /* ---------- search ---------- */
 .search-result { border-bottom: 1px solid var(--divider-color); }
@@ -276,7 +293,8 @@ input[type="text"], input[type="search"], textarea, select {
 .status-bar { background: var(--background-secondary); color: var(--text-muted); font-size: 0.8em; }
 ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb-bg); border-radius: 5px; }
 ::selection { background: var(--text-selection); }
-:focus-visible {
+body.theme-light :focus-visible,
+body.theme-dark :focus-visible {
   outline: 2px solid var(--background-modifier-border-focus);
   outline-offset: 1px;
   border-radius: var(--radius-s);
@@ -289,10 +307,81 @@ input[type="text"], input[type="search"], textarea, select {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    transition-duration: 1ms !important;
-    animation-duration: 1ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
+  body.theme-light *, body.theme-dark *,
+  body.theme-light *::before, body.theme-dark *::before,
+  body.theme-light *::after, body.theme-dark *::after {
+    transition-duration: 0s;
+    animation-duration: 0s;
+    animation-iteration-count: 1;
+    scroll-behavior: auto;
   }
 }
+
+/* Survey labels and route marks also identify the editor hierarchy. */
+.markdown-source-view.mod-cm6 .cm-header { letter-spacing: 0.015em; }
+.markdown-source-view.mod-cm6 .HyperMD-header-1::before {
+  content: "◈ "; color: var(--atlas-marker); font-size: 1em; font-family: var(--font-interface-theme);
+}
+.markdown-source-view.mod-cm6 .HyperMD-header-2::before {
+  content: "◇ "; color: var(--atlas-marker); font-size: 1em; font-family: var(--font-interface-theme);
+}
+.markdown-rendered h4, .markdown-rendered h5, .markdown-rendered h6,
+.markdown-source-view.mod-cm6 .cm-header-4,
+.markdown-source-view.mod-cm6 .cm-header-5,
+.markdown-source-view.mod-cm6 .cm-header-6 {
+  color: var(--text-muted); letter-spacing: 0.06em;
+}
+.markdown-source-view.mod-cm6 .cm-hmd-internal-link,
+.markdown-source-view.mod-cm6 .cm-link { text-decoration: underline; }
+.markdown-rendered .task-list-item::marker { content: normal; }
+.markdown-rendered .task-list-item.is-checked > :is(ul, ol) { color: var(--text-normal); }
+.callout .callout-title { color: var(--text-normal); }
+.callout[data-callout="warning"], .callout[data-callout="caution"] {
+  border-inline-start-style: double; border-inline-start-width: 5px;
+}
+.callout[data-callout="danger"], .callout[data-callout="failure"] {
+  border-inline-start-width: 5px; border-top: 2px solid var(--atlas-rail);
+}
+.markdown-rendered .markdown-embed,
+.markdown-source-view.mod-cm6 .markdown-embed {
+  background: var(--atlas-water);
+  border: 1px solid var(--background-modifier-border);
+  border-inline-start: 3px solid var(--atlas-rail);
+  border-radius: var(--atlas-radius);
+  padding: 0.4em 0.9em;
+  max-width: 100%;
+}
+.markdown-embed-title { font-family: var(--font-interface-theme); letter-spacing: 0.04em; }
+.markdown-rendered img { max-width: 100%; box-sizing: border-box; }
+.markdown-source-view.mod-cm6 .HyperMD-codeblock {
+  background: var(--code-background);
+  border-inline-start: 3px solid var(--atlas-rail);
+  border-inline-end: 1px solid var(--background-modifier-border);
+  line-height: 1.4;
+}
+.markdown-source-view.mod-cm6 .HyperMD-codeblock-begin {
+  border-top: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s) var(--radius-s) 0 0;
+}
+.markdown-source-view.mod-cm6 .HyperMD-codeblock-end {
+  border-bottom: 1px solid var(--background-modifier-border);
+  border-radius: 0 0 var(--radius-s) var(--radius-s);
+}
+.markdown-rendered pre, .markdown-rendered .table-wrapper { overflow-x: auto; }
+
+/* Survey texture stays between blocks and outside the editor text column. */
+.markdown-preview-view .markdown-preview-sizer > div,
+.markdown-source-view.mod-cm6 .cm-content {
+  background-color: var(--background-primary);
+}
+/* Use Obsidian's rendered list bullet node for diamond itinerary marks. */
+.markdown-rendered .list-bullet::after {
+  width: 5px;
+  height: 5px;
+  border-radius: 0;
+  background-color: var(--atlas-marker);
+  transform: rotate(45deg);
+}
+/* Embedded notes keep one water-colored panel, without nested canvas masks. */
+.markdown-embed .markdown-preview-sizer { background-image: none; }
+.markdown-embed .markdown-preview-sizer > div { background-color: transparent; }

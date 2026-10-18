@@ -1,0 +1,49 @@
+{
+  "slug": "waypoint-atlas",
+  "family": "visual-thinking",
+  "useCase": "Atlas and spatial navigation: map-like vaults, MOCs, region indexes and location journals where the reader moves across an overview rather than down a linear note.",
+  "distinctFeatures": [
+    "Decorative survey texture between Reading view blocks and outside the Live Preview text column",
+    "Diamond waypoint markers prefix H1-H2 in Reading view and Live Preview",
+    "Callouts and code blocks carry a coloured route rail on the inline-start edge",
+    "Dotted border cues on internal links and dashed unresolved links",
+    "Horizon rule with a centred waypoint glyph"
+  ],
+  "modes": [
+    "light",
+    "dark"
+  ],
+  "contrastTokens": {
+    "normalText": {
+      "light": "#1f2a30",
+      "dark": "#e8eef0"
+    },
+    "mutedText": {
+      "light": "#4f5a5e",
+      "dark": "#9fb0b5"
+    },
+    "link": {
+      "light": "#0b6b6f",
+      "dark": "#5fd0c8"
+    },
+    "uiFocus": {
+      "light": "#0b6b6f",
+      "dark": "#5fd0c8"
+    }
+  },
+  "backgrounds": {
+    "light": "#f4efe3",
+    "dark": "#101a1f"
+  },
+  "fonts": {
+    "text": "\"Optima\", \"Candara\", \"Corbel\", \"Trebuchet MS\", sans-serif",
+    "interface": "\"Gill Sans\", \"Gill Sans MT\", \"Segoe UI\", \"Helvetica Neue\", sans-serif",
+    "monospace": "\"SFMono-Regular\", \"Menlo\", \"Consolas\", monospace"
+  },
+  "verification": {
+    "localGate": "pending",
+    "independentCodeGate": "pending",
+    "visualReview": "pending",
+    "releaseReady": false
+  }
+}

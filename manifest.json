@@ -1,6 +1,8 @@
 {
   "name": "Waypoint Atlas",
-  "author": "Visual Thinking Factory (U19)",
-  "version": "1.0.0",
-  "minAppVersion": "1.5.0"
+  "version": "1.0.1",
+  "minAppVersion": "1.5.0",
+  "author": "NoteMods",
+  "authorUrl": "https://notemods.com/themes/",
+  "fundingUrl": "https://github.com/sponsors/theluckystrike"
 }
