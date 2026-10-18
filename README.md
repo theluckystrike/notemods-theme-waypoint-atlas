@@ -68,6 +68,8 @@ Check text and border contrast after you change colors.
 
 ## Known limits
 
+- Checked task labels use muted ink. Continuation paragraphs use normal ink.
+
 - The survey grid is decorative. It does not align to text baselines or map coordinates.
 - Diamond heading marks are CSS decoration. They are not note text or navigation controls.
 - Optima and Gill Sans depend on installed fonts. Fallback fonts can change line breaks.

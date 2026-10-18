@@ -43,6 +43,7 @@
   --table-text-size: 0.92em;
   --table-line-height: 1.4;
   --code-size: 0.86em;
+  --code-line-height: 1.4;
   --code-background: var(--background-secondary);
   --code-property: var(--text-normal);
   --code-operator: var(--text-accent);
@@ -225,6 +226,7 @@ a.external-link:hover { color: var(--link-external-color-hover); }
 
 /* ---------- callouts: route rail ---------- */
 .callout {
+  --callout-color: var(--atlas-callout-default);
   border-radius: var(--callout-radius);
   border: 1px solid var(--background-modifier-border);
   border-inline-start: 4px solid rgb(var(--callout-color));
@@ -358,7 +360,6 @@ body.theme-dark :focus-visible {
 .markdown-source-view.mod-cm6 .HyperMD-codeblock {
   background: transparent;
   border-inline: none;
-  line-height: 1.4;
 }
 .markdown-source-view.mod-cm6 .HyperMD-codeblock-bg {
   background: var(--code-background);
@@ -569,7 +570,7 @@ body .markdown-source-view.mod-cm6 .cm-hmd-indented-code {
 /* An open search index keeps matching text easy to scan. */
 body .search-result-file-matches { border: none; box-shadow: none; border-radius: 0; }
 body .search-result-file-match { border: none; border-bottom: 1px solid var(--divider-color); border-radius: 0; }
-body .search-result-file-matched-text { font-weight: 750; }
+body .search-result-file-matched-text { font-weight: 700; }
 
 /* Route marks identify the current file and command without shifting labels. */
 .nav-file-title.is-active { position: relative; }
@@ -672,3 +673,12 @@ html body:is(.theme-light, .theme-dark) .vertical-tab-content .setting-item:focu
 html body:is(.theme-light, .theme-dark) .vertical-tab-content .setting-item-control :is(button, input, select, textarea, .checkbox-container, .clickable-icon):focus {
   outline: 2px solid var(--text-normal); outline-offset: 2px; box-shadow: none;
 }
+
+/* Unrecognized callouts keep a valid route color in either renderer format. */
+body.theme-light { --atlas-callout-default: 11, 107, 111; }
+body.theme-dark { --atlas-callout-default: 95, 208, 200; }
+body.theme-light .callout[data-callout="important"] { --callout-color: 63, 107, 42; }
+body.theme-dark .callout[data-callout="important"] { --callout-color: 167, 208, 138; }
+
+/* A continued paragraph keeps prose ink after the completed waypoint label. */
+body .markdown-rendered li.task-list-item.is-checked > p ~ p { color: var(--text-normal); }
