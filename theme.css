@@ -61,7 +61,8 @@
   --indentation-guide-color: var(--background-modifier-border);
   --checkbox-border-color: var(--background-modifier-border);
   --checklist-done-decoration: none;
-  --link-decoration: underline;
+  --link-decoration: none;
+  --link-decoration-hover: none;
   --link-external-decoration: underline;
   --link-unresolved-opacity: 1;
   --h4-font: var(--font-interface-theme);
@@ -139,7 +140,7 @@
   --text-on-accent: #08201f;
   --text-selection: rgba(95, 208, 200, 0.2);
   --text-highlight-bg: rgba(224, 168, 60, 0.3);
-  --interactive-normal: #1c2c33; --interactive-hover: #22343c;
+  --interactive-normal: #29424d; --interactive-hover: #35535f;
   --interactive-accent: #5fd0c8; --interactive-accent-hover: #8fe2dc;
   --link-color: #5fd0c8; --link-color-hover: #8fe2dc;
   --link-external-color: #e0a850; --link-external-color-hover: #efc079;
@@ -161,17 +162,19 @@
   --scrollbar-active-thumb-bg: rgba(232, 238, 240, 0.36);
 }
 
-/* ---------- map canvas: dotted graticule behind Reading view ---------- */
-.markdown-preview-view .markdown-preview-sizer {
+/* Decorative survey dots occupy the margins, outside the solid note sheet. */
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 .cm-scroller {
   background-image: radial-gradient(var(--atlas-grid) 1px, transparent 1.2px);
   background-size: 22px 22px;
   background-position: 0 0;
-  padding-block: 1.6rem;
 }
-.markdown-source-view.mod-cm6 .cm-scroller {
-  background-image: linear-gradient(to right, var(--atlas-grid) 1px, transparent 1px);
-  background-size: 44px 100%;
+.markdown-preview-view .markdown-preview-sizer,
+.markdown-source-view.mod-cm6 .cm-sizer {
+  background-color: var(--background-primary);
+  min-height: 100%;
 }
+.markdown-preview-view .markdown-preview-sizer { padding-block: 1.6rem; }
 
 /* ---------- typographic base ---------- */
 .markdown-preview-view .markdown-rendered { font-family: var(--atlas-font); }
@@ -189,11 +192,11 @@
 .markdown-rendered h2 { border-bottom: 1px solid var(--background-modifier-border); padding-bottom: 0.18em; }
 .markdown-rendered h1::before { content: "◈ "; color: var(--atlas-marker); }
 .markdown-rendered h2::before { content: "◇ "; color: var(--atlas-marker); }
-.markdown-rendered h3::before { content: "· "; color: var(--atlas-marker); }
+.markdown-rendered h3::before { content: "◦ "; color: var(--atlas-marker); }
 
 /* ---------- links: compass-marked, route-underlined ---------- */
-a.internal-link { color: var(--link-color); text-decoration: none; border-bottom: 1px dotted currentColor; }
-a.internal-link:hover { color: var(--link-color-hover); border-bottom-style: solid; }
+.markdown-rendered a.internal-link, .markdown-preview-view a.internal-link { color: var(--link-color); text-decoration: none; border-bottom: 1px dotted currentColor; }
+.markdown-rendered a.internal-link:hover, .markdown-preview-view a.internal-link:hover { color: var(--link-color-hover); border-bottom-style: solid; text-decoration: none; }
 a.external-link { color: var(--link-external-color); text-decoration: underline; }
 a.external-link:hover { color: var(--link-external-color-hover); }
 .is-unresolved, a.is-unresolved { color: var(--link-unresolved-color); border-bottom: 1px dashed currentColor; }
@@ -225,7 +228,7 @@ a.external-link:hover { color: var(--link-external-color-hover); }
 .callout {
   border-radius: var(--callout-radius);
   border: 1px solid var(--background-modifier-border);
-  border-inline-start: 3px solid var(--atlas-rail);
+  border-inline-start: 4px solid rgb(var(--callout-color));
   background: var(--background-secondary);
 }
 .callout-title { font-family: var(--font-interface-theme); letter-spacing: 0.03em; }
@@ -303,13 +306,13 @@ body.theme-dark :focus-visible {
 @media (max-width: 640px) {
   .markdown-preview-view .markdown-preview-sizer,
   .markdown-source-view.mod-cm6 .cm-sizer { padding-inline: 0.85rem; }
-  :root { --file-line-width: 100%; }
+  body.theme-light, body.theme-dark { --file-line-width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.theme-light *, body.theme-dark *,
-  body.theme-light *::before, body.theme-dark *::before,
-  body.theme-light *::after, body.theme-dark *::after {
+  html body:is(.theme-light, .theme-dark) *,
+  html body:is(.theme-light, .theme-dark) *::before,
+  html body:is(.theme-light, .theme-dark) *::after {
     transition-duration: 0s;
     animation-duration: 0s;
     animation-iteration-count: 1;
@@ -337,10 +340,10 @@ body.theme-dark :focus-visible {
 .markdown-rendered .task-list-item.is-checked > :is(ul, ol) { color: var(--text-normal); }
 .callout .callout-title { color: var(--text-normal); }
 .callout[data-callout="warning"], .callout[data-callout="caution"] {
-  border-inline-start-style: double; border-inline-start-width: 5px;
+  border-inline-start-style: double; border-inline-start-width: 7px;
 }
 .callout[data-callout="danger"], .callout[data-callout="failure"] {
-  border-inline-start-width: 5px; border-top: 2px solid var(--atlas-rail);
+  border-inline-start-width: 5px; border-top: 2px solid rgb(var(--callout-color));
 }
 .markdown-rendered .markdown-embed,
 .markdown-source-view.mod-cm6 .markdown-embed {
@@ -354,28 +357,32 @@ body.theme-dark :focus-visible {
 .markdown-embed-title { font-family: var(--font-interface-theme); letter-spacing: 0.04em; }
 .markdown-rendered img { max-width: 100%; box-sizing: border-box; }
 .markdown-source-view.mod-cm6 .HyperMD-codeblock {
+  background: transparent;
+  border-inline: none;
+  line-height: 1.4;
+}
+.markdown-source-view.mod-cm6 .HyperMD-codeblock-bg {
   background: var(--code-background);
   border-inline-start: 3px solid var(--atlas-rail);
   border-inline-end: 1px solid var(--background-modifier-border);
-  line-height: 1.4;
 }
-.markdown-source-view.mod-cm6 .HyperMD-codeblock-begin {
+.markdown-source-view.mod-cm6 .HyperMD-codeblock-begin-bg {
   border-top: 1px solid var(--background-modifier-border);
   border-radius: var(--radius-s) var(--radius-s) 0 0;
 }
-.markdown-source-view.mod-cm6 .HyperMD-codeblock-end {
+.markdown-source-view.mod-cm6 .HyperMD-codeblock-end-bg {
   border-bottom: 1px solid var(--background-modifier-border);
   border-radius: 0 0 var(--radius-s) var(--radius-s);
 }
-.markdown-rendered pre, .markdown-rendered .table-wrapper { overflow-x: auto; }
+.markdown-preview-view pre, .markdown-preview-view .table-wrapper { overflow-x: auto; overflow-y: hidden; }
+.markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper { overflow: visible; }
 
-/* Survey texture stays between blocks and outside the editor text column. */
-.markdown-preview-view .markdown-preview-sizer > div,
+/* Keep a solid sheet behind the editor text. */
 .markdown-source-view.mod-cm6 .cm-content {
   background-color: var(--background-primary);
 }
 /* Use Obsidian's rendered list bullet node for diamond itinerary marks. */
-.markdown-rendered .list-bullet::after {
+:is(.markdown-source-view.mod-cm6, .markdown-rendered) .list-bullet::after {
   width: 5px;
   height: 5px;
   border-radius: 0;
@@ -385,3 +392,139 @@ body.theme-dark :focus-visible {
 /* Embedded notes keep one water-colored panel, without nested canvas masks. */
 .markdown-embed .markdown-preview-sizer { background-image: none; }
 .markdown-embed .markdown-preview-sizer > div { background-color: transparent; }
+
+/* Live Preview uses the same chart hierarchy as Reading view. */
+.markdown-source-view.mod-cm6 .HyperMD-header-2 {
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding-bottom: 0.18em;
+}
+.markdown-source-view.mod-cm6 .HyperMD-header-3::before {
+  content: "◦ "; color: var(--atlas-marker); font-family: var(--font-interface-theme);
+}
+.markdown-source-view.mod-cm6 .HyperMD-quote { font-style: italic; }
+.markdown-source-view.mod-cm6 .HyperMD-codeblock .cm-indent::before { display: none; }
+body:is(.theme-light, .theme-dark) .markdown-source-view .cm-content:focus-visible,
+body:is(.theme-light, .theme-dark) .markdown-source-view .cm-editor.cm-focused {
+  outline: none;
+  box-shadow: none;
+}
+body .cm-s-obsidian span.cm-hashtag {
+  background: var(--tag-background); color: var(--tag-color);
+  font-family: var(--font-interface-theme); font-size: var(--tag-size);
+  border-radius: var(--tag-radius); padding: 0.03em 0.42em;
+}
+body .cm-s-obsidian span.cm-hashtag-begin {
+  border-radius: 2px 0 0 2px; padding-right: 0;
+}
+body .cm-s-obsidian span.cm-hashtag-end {
+  border-radius: 0 2px 2px 0; padding-left: 0;
+}
+.callout .callout-icon { color: rgb(var(--callout-color)); }
+.callout-content > :last-child { margin-bottom: 0; }
+
+/* Chart-index chrome repeats the route rail without adding note decoration. */
+.prompt { border-top: 3px solid var(--atlas-rail); }
+.prompt-input-container { border-bottom: 1px solid var(--divider-color); }
+.prompt-results { padding: 0.4rem; }
+body .suggestion-item.is-selected, body .prompt .suggestion-item.is-selected {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  box-shadow: inset 3px 0 0 var(--text-on-accent);
+  border-radius: var(--radius-s);
+}
+.suggestion-item.is-selected :is(.suggestion-title, .suggestion-note, .suggestion-hotkey, .suggestion-content) {
+  color: inherit;
+}
+.nav-file-title.is-active { box-shadow: inset 3px 0 0 var(--atlas-rail); }
+.vertical-tab-nav-item.is-active { background: var(--background-primary); }
+.vertical-tab-header-group-title { font-family: var(--font-interface-theme); letter-spacing: 0.09em; text-transform: uppercase; }
+.setting-item-heading { border-top: 2px solid var(--atlas-rail); }
+body .setting-item-control :is(button:not(.mod-cta):not(.clickable-icon), select.dropdown) {
+  background-color: var(--interactive-normal);
+  border: 1px solid var(--background-modifier-border);
+}
+
+/* Keep code labels and control focus above the app's specific defaults. */
+body .markdown-source-view.mod-cm6 .cm-content span.cm-inline-code:not(.cm-formatting) {
+  background: var(--code-background); color: var(--code-normal);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s); padding: 0.05em 0.25em;
+}
+body .markdown-source-view.mod-cm6 .cm-content span.cm-formatting-code {
+  border: none; padding-inline: 0; background: transparent;
+}
+html body:is(.theme-light, .theme-dark) :is(button, a, input, textarea, select, [tabindex], .clickable-icon, .checkbox-container):not(.cm-content):focus-visible,
+body:is(.theme-light, .theme-dark) .setting-group.mod-list .checkbox-container.checkbox-container:focus-visible {
+  outline: 2px solid var(--background-modifier-border-focus);
+  outline-offset: 3px; box-shadow: none;
+}
+.callout .callout-icon .svg-icon { color: rgb(var(--callout-color)); }
+body.theme-light .callout[data-callout="note"],
+body.theme-light .callout[data-callout="info"],
+body.theme-light .callout[data-callout="todo"] { --callout-color: 11, 107, 111; }
+body.theme-light .callout[data-callout="abstract"],
+body.theme-light .callout[data-callout="summary"],
+body.theme-light .callout[data-callout="tldr"] { --callout-color: 107, 58, 122; }
+body.theme-light .callout[data-callout="tip"],
+body.theme-light .callout[data-callout="hint"],
+body.theme-light .callout[data-callout="success"],
+body.theme-light .callout[data-callout="check"],
+body.theme-light .callout[data-callout="done"] { --callout-color: 63, 107, 42; }
+body.theme-light .callout[data-callout="question"],
+body.theme-light .callout[data-callout="help"],
+body.theme-light .callout[data-callout="faq"],
+body.theme-light .callout[data-callout="warning"],
+body.theme-light .callout[data-callout="caution"],
+body.theme-light .callout[data-callout="attention"] { --callout-color: 138, 90, 30; }
+body.theme-light .callout[data-callout="failure"],
+body.theme-light .callout[data-callout="fail"],
+body.theme-light .callout[data-callout="missing"],
+body.theme-light .callout[data-callout="danger"],
+body.theme-light .callout[data-callout="error"],
+body.theme-light .callout[data-callout="bug"] { --callout-color: 160, 52, 24; }
+body.theme-light .callout[data-callout="example"] { --callout-color: 52, 94, 120; }
+body.theme-light .callout[data-callout="quote"],
+body.theme-light .callout[data-callout="cite"] { --callout-color: 79, 90, 94; }
+body.theme-dark .callout[data-callout="note"],
+body.theme-dark .callout[data-callout="info"],
+body.theme-dark .callout[data-callout="todo"] { --callout-color: 95, 208, 200; }
+body.theme-dark .callout[data-callout="abstract"],
+body.theme-dark .callout[data-callout="summary"],
+body.theme-dark .callout[data-callout="tldr"] { --callout-color: 211, 167, 224; }
+body.theme-dark .callout[data-callout="tip"],
+body.theme-dark .callout[data-callout="hint"],
+body.theme-dark .callout[data-callout="success"],
+body.theme-dark .callout[data-callout="check"],
+body.theme-dark .callout[data-callout="done"] { --callout-color: 167, 208, 138; }
+body.theme-dark .callout[data-callout="question"],
+body.theme-dark .callout[data-callout="help"],
+body.theme-dark .callout[data-callout="faq"],
+body.theme-dark .callout[data-callout="warning"],
+body.theme-dark .callout[data-callout="caution"],
+body.theme-dark .callout[data-callout="attention"] { --callout-color: 232, 196, 138; }
+body.theme-dark .callout[data-callout="failure"],
+body.theme-dark .callout[data-callout="fail"],
+body.theme-dark .callout[data-callout="missing"],
+body.theme-dark .callout[data-callout="danger"],
+body.theme-dark .callout[data-callout="error"],
+body.theme-dark .callout[data-callout="bug"] { --callout-color: 240, 160, 138; }
+body.theme-dark .callout[data-callout="example"] { --callout-color: 145, 201, 232; }
+body.theme-dark .callout[data-callout="quote"],
+body.theme-dark .callout[data-callout="cite"] { --callout-color: 182, 198, 205; }
+
+/* The native table widget scrolls wide tables. Its fit-content child must not scroll. */
+body .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote {
+  font-style: italic;
+  background-color: var(--background-secondary);
+  color: var(--text-muted);
+}
+body .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote::before,
+body .markdown-source-view.mod-cm6 .cm-blockquote-border::before {
+  border-inline-start: 2px dashed var(--background-modifier-border);
+}
+body .markdown-source-view.mod-cm6 .cm-quote { color: var(--text-muted); }
+.markdown-embed .markdown-preview-sizer { background-color: transparent; }
+
+/* Preserve the disabled glyph cue without fading its keyboard focus ring. */
+body .clickable-icon[aria-disabled="true"]:focus-visible { opacity: 1; }
+body .clickable-icon[aria-disabled="true"]:focus-visible svg { opacity: 0.4; }

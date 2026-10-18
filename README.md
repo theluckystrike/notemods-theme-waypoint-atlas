@@ -2,7 +2,7 @@
 
 Waypoint Atlas is for location journals, region indexes and linked project maps.
 Sand and deep blue backgrounds support teal route marks.
-Diamond headings mark stops in a note. Tables read like chart legends.
+Diamond headings mark stops in Reading view and Live Preview. Tables read like chart legends.
 Callouts, code and embeds use a route rail along their left edge.
 
 ## Screenshots
@@ -40,7 +40,6 @@ Your notes remain in the vault.
 The minimum declared Obsidian version is 1.5.0.
 The desktop renderer was tested with Obsidian 1.14.4.
 Mobile was not tested. A narrow desktop capture does not test a mobile device.
-The current revision needs independent review against the NoteMods 95-point gate.
 
 ## Customize
 
@@ -57,10 +56,11 @@ body.theme-dark {
 ```
 
 `--atlas-grid` controls the decorative survey grid.
-The grid appears between content blocks and outside the editor text column.
+The grid appears in the margins outside the solid note sheet in both views.
 It does not mark a control, table cell or content boundary.
 It is intentionally faint. Structural borders use a separate contrast-tested token.
-`--atlas-rail` controls the callout, code and embed rails.
+`--atlas-rail` controls the code, embed and navigation rails.
+Callout rails retain the color for their type.
 `--atlas-water` controls the embed background.
 Check text and border contrast after you change colors.
 
@@ -70,7 +70,7 @@ Check text and border contrast after you change colors.
 - Diamond heading marks are CSS decoration. They are not note text or navigation controls.
 - Optima and Gill Sans depend on installed fonts. Fallback fonts can change line breaks.
 - Wide tables and code blocks can need horizontal scrolling.
-- Callout types share one route palette. Titles and icons identify their type. Warning and danger callouts also have distinct borders.
+- Callout types use distinct colored rails and icons. Warning and danger callouts also have distinct borders.
 - The theme styles notes. It does not create maps or change graph positions.
 - Plugin views can use their own styles. They were not part of the fixture test.
 - Automated contrast checks do not certify WCAG conformance. Screen reader use has not been tested.

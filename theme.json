@@ -3,7 +3,7 @@
   "family": "visual-thinking",
   "useCase": "Atlas and spatial navigation: map-like vaults, MOCs, region indexes and location journals where the reader moves across an overview rather than down a linear note.",
   "distinctFeatures": [
-    "Decorative survey texture between Reading view blocks and outside the Live Preview text column",
+    "Decorative survey dots in the margins around a solid note sheet in Reading view and Live Preview",
     "Diamond waypoint markers prefix H1-H2 in Reading view and Live Preview",
     "Callouts and code blocks carry a coloured route rail on the inline-start edge",
     "Dotted border cues on internal links and dashed unresolved links",
